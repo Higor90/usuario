@@ -1,13 +1,9 @@
-package com.estudo.aprendendo_spring.infrastructure.entity;
+package com.javanauta.usuario.infrastructure.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "usuario")
+@Builder
 public class Usuario implements UserDetails {
 
     @Id
@@ -36,6 +33,7 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private List<Telefone> telefones;
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
@@ -43,11 +41,13 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
+
         return senha ;
     }
 
     @Override
     public String getUsername() {
+
         return email;
     }
 }
