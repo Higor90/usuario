@@ -19,12 +19,12 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "nome", length = 100)
     private String nome;
     @Column(name = "email", length = 100)
     private String email;
-    @Column( name = "senha", length = 100)
+    @Column(name = "senha")
     private String senha;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
@@ -41,13 +41,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-
-        return senha ;
+        return senha;
     }
 
     @Override
     public String getUsername() {
-
         return email;
     }
 }
